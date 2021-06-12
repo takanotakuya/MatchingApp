@@ -14,19 +14,19 @@ class BottomControlView: UIView {
         
         backgroundColor = .purple
         
-        let view1 = BottomButtonView(frame: .zero, width: 50)
+        let view1 = BottomButtonView(frame: .zero, width: 50, imageName: "リロードのフリーアイコン")
         view1.backgroundColor = .orange
         
-        let view2 = BottomButtonView(frame: .zero, width: 60)
+        let view2 = BottomButtonView(frame: .zero, width: 60, imageName: "ノーマルの太さのバツアイコン")
         view2.backgroundColor = .orange
         
-        let view3 = BottomButtonView(frame: .zero, width: 50)
+        let view3 = BottomButtonView(frame: .zero, width: 50, imageName: "星アイコン6")
         view3.backgroundColor = .orange
         
-        let view4 = BottomButtonView(frame: .zero, width: 60)
+        let view4 = BottomButtonView(frame: .zero, width: 60, imageName: "ハートのマーク")
         view4.backgroundColor = .orange
         
-        let view5 = BottomButtonView(frame: .zero, width: 50)
+        let view5 = BottomButtonView(frame: .zero, width: 50, imageName: "電気のアイコン")
         view5.backgroundColor = .orange
         
         let baseStackView = UIStackView(arrangedSubviews: [view1, view2, view3, view4, view5])
@@ -56,11 +56,12 @@ class BottomButtonView: UIView {
     
     var button: UIButton?
     
-    init(frame: CGRect, width: CGFloat) {
+    init(frame: CGRect, width: CGFloat, imageName: String) {
         super.init(frame: frame)
         
-        button = UIButton(type: .system)
-        button?.setTitle("tap", for: .normal)
+        button = UIButton(type: .custom)
+        button?.setImage(UIImage(named: imageName)?.resize(size: .init(width: width * 0.4, height: width * 0.4)), for: .normal)
+//        button?.setTitle("tap", for: .normal)
         button?.translatesAutoresizingMaskIntoConstraints = false
         button?.backgroundColor = .white
         button?.layer.cornerRadius = width / 2
