@@ -9,6 +9,21 @@ import UIKit
 
 class BottomControlView: UIView {
     
+    let button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("tap", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 25
+        
+        button.layer.shadowOffset = .init(width: 1.5, height: 2)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowRadius = 15
+        
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -16,6 +31,8 @@ class BottomControlView: UIView {
         
         let view1 = UIView()
         view1.backgroundColor = .orange
+        
+        view1.addSubview(button)
         
         let view2 = UIView()
         view2.backgroundColor = .orange
@@ -40,8 +57,15 @@ class BottomControlView: UIView {
         [baseStackView.topAnchor.constraint(equalTo: topAnchor),
          baseStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
          baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-         baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)]
-            .forEach { $0.isActive = true }
+         baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+        
+         button.centerYAnchor.constraint(equalTo: view1.centerYAnchor),
+         button.centerXAnchor.constraint(equalTo: view1.centerXAnchor),
+         button.widthAnchor.constraint(equalToConstant: 50),
+         button.heightAnchor.constraint(equalToConstant: 50),
+         
+        
+        ].forEach { $0.isActive = true }
         
         
     }
