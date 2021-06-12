@@ -9,25 +9,14 @@ import UIKit
 
 class BottomControlView: UIView {
     
+    let view1 = BottomButtonView(frame: .zero, width: 50, imageName: "リロードのフリーアイコン")
+    let view2 = BottomButtonView(frame: .zero, width: 60, imageName: "ノーマルの太さのバツアイコン")
+    let view3 = BottomButtonView(frame: .zero, width: 50, imageName: "星アイコン6")
+    let view4 = BottomButtonView(frame: .zero, width: 60, imageName: "ハートのマーク")
+    let view5 = BottomButtonView(frame: .zero, width: 50, imageName: "電気のアイコン")
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .purple
-        
-        let view1 = BottomButtonView(frame: .zero, width: 50, imageName: "リロードのフリーアイコン")
-        view1.backgroundColor = .orange
-        
-        let view2 = BottomButtonView(frame: .zero, width: 60, imageName: "ノーマルの太さのバツアイコン")
-        view2.backgroundColor = .orange
-        
-        let view3 = BottomButtonView(frame: .zero, width: 50, imageName: "星アイコン6")
-        view3.backgroundColor = .orange
-        
-        let view4 = BottomButtonView(frame: .zero, width: 60, imageName: "ハートのマーク")
-        view4.backgroundColor = .orange
-        
-        let view5 = BottomButtonView(frame: .zero, width: 50, imageName: "電気のアイコン")
-        view5.backgroundColor = .orange
         
         let baseStackView = UIStackView(arrangedSubviews: [view1, view2, view3, view4, view5])
         baseStackView.axis = .horizontal
@@ -54,12 +43,12 @@ class BottomControlView: UIView {
 
 class BottomButtonView: UIView {
     
-    var button: UIButton?
+    var button: BottomBotton?
     
     init(frame: CGRect, width: CGFloat, imageName: String) {
         super.init(frame: frame)
         
-        button = UIButton(type: .custom)
+        button = BottomBotton(type: .custom)
         button?.setImage(UIImage(named: imageName)?.resize(size: .init(width: width * 0.4, height: width * 0.4)), for: .normal)
 //        button?.setTitle("tap", for: .normal)
         button?.translatesAutoresizingMaskIntoConstraints = false
@@ -74,9 +63,40 @@ class BottomButtonView: UIView {
         addSubview(button!)
         
         [button?.centerYAnchor.constraint(equalTo: centerYAnchor),
-        button?.centerXAnchor.constraint(equalTo: centerXAnchor),
-        button?.widthAnchor.constraint(equalToConstant: width),
-        button?.heightAnchor.constraint(equalToConstant: width)].forEach { $0?.isActive = true }
+         button?.centerXAnchor.constraint(equalTo: centerXAnchor),
+         button?.widthAnchor.constraint(equalToConstant: width),
+         button?.heightAnchor.constraint(equalToConstant: width)].forEach { $0?.isActive = true }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+class BottomBotton: UIButton {
+    
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: []) {
+                    
+                    self.transform = .init(scaleX: 0.8, y: 0.8)
+                    self.layoutIfNeeded()
+                }
+            } else {
+                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: []) {
+                    
+                    self.transform = .identity
+                    self.layoutIfNeeded()
+                }
+            }
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
     }
     
     required init?(coder: NSCoder) {
