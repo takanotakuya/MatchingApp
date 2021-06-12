@@ -14,19 +14,19 @@ class BottomControlView: UIView {
         
         backgroundColor = .purple
         
-        let view1 = BottomButtonView()
+        let view1 = BottomButtonView(frame: .zero, width: 50)
         view1.backgroundColor = .orange
         
-        let view2 = BottomButtonView()
+        let view2 = BottomButtonView(frame: .zero, width: 60)
         view2.backgroundColor = .orange
         
-        let view3 = BottomButtonView()
+        let view3 = BottomButtonView(frame: .zero, width: 50)
         view3.backgroundColor = .orange
         
-        let view4 = BottomButtonView()
+        let view4 = BottomButtonView(frame: .zero, width: 60)
         view4.backgroundColor = .orange
         
-        let view5 = BottomButtonView()
+        let view5 = BottomButtonView(frame: .zero, width: 50)
         view5.backgroundColor = .orange
         
         let baseStackView = UIStackView(arrangedSubviews: [view1, view2, view3, view4, view5])
@@ -56,14 +56,14 @@ class BottomButtonView: UIView {
     
     var button: UIButton?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, width: CGFloat) {
         super.init(frame: frame)
         
         button = UIButton(type: .system)
         button?.setTitle("tap", for: .normal)
         button?.translatesAutoresizingMaskIntoConstraints = false
         button?.backgroundColor = .white
-        button?.layer.cornerRadius = 25
+        button?.layer.cornerRadius = width / 2
         
         button?.layer.shadowOffset = .init(width: 1.5, height: 2)
         button?.layer.shadowColor = UIColor.black.cgColor
@@ -74,8 +74,8 @@ class BottomButtonView: UIView {
         
         [button?.centerYAnchor.constraint(equalTo: centerYAnchor),
         button?.centerXAnchor.constraint(equalTo: centerXAnchor),
-        button?.widthAnchor.constraint(equalToConstant: 50),
-        button?.heightAnchor.constraint(equalToConstant: 50)].forEach { $0?.isActive = true }
+        button?.widthAnchor.constraint(equalToConstant: width),
+        button?.heightAnchor.constraint(equalToConstant: width)].forEach { $0?.isActive = true }
     }
     
     required init?(coder: NSCoder) {
