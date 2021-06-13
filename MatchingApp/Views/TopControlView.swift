@@ -48,33 +48,49 @@ class TopControlView: UIView {
          baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 40),
          baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -40),
         ].forEach { $0.isActive = true }
+        
+        tinderButton.isSelected = true
+    
     }
     
     private func setupBindings() {
         
         tinderButton.rx.tap
             .subscribe { _ in
-                print(#function)
+                self.handleSelectedButton(selectedButton: self.tinderButton)
             }
             .disposed(by: disposeBag)
         
         goodButton.rx.tap
             .subscribe { _ in
-                print(#function)
+                self.handleSelectedButton(selectedButton: self.goodButton)
             }
             .disposed(by: disposeBag)
         
         commentButton.rx.tap
             .subscribe { _ in
-                print(#function)
+                self.handleSelectedButton(selectedButton: self.commentButton)
             }
             .disposed(by: disposeBag)
         
         profileButton.rx.tap
             .subscribe { _ in
-                print(#function)
+                self.handleSelectedButton(selectedButton: self.profileButton)
             }
             .disposed(by: disposeBag)
+        
+    }
+    
+    private func handleSelectedButton(selectedButton: UIButton) {
+        let buttons = [tinderButton, goodButton, commentButton, profileButton]
+        
+        buttons.forEach { button in
+            if button == selectedButton {
+                button.isSelected = true
+            } else {
+                button.isSelected = false
+            }
+        }
         
     }
     
