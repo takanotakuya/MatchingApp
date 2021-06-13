@@ -56,27 +56,35 @@ class TopControlView: UIView {
     private func setupBindings() {
         
         tinderButton.rx.tap
-            .subscribe { _ in
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
                 self.handleSelectedButton(selectedButton: self.tinderButton)
-            }
+            })
             .disposed(by: disposeBag)
-        
+            
         goodButton.rx.tap
-            .subscribe { _ in
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
                 self.handleSelectedButton(selectedButton: self.goodButton)
-            }
+            })
             .disposed(by: disposeBag)
         
         commentButton.rx.tap
-            .subscribe { _ in
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
                 self.handleSelectedButton(selectedButton: self.commentButton)
-            }
+            })
             .disposed(by: disposeBag)
         
         profileButton.rx.tap
-            .subscribe { _ in
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                guard let self = self else { return }
                 self.handleSelectedButton(selectedButton: self.profileButton)
-            }
+            })
             .disposed(by: disposeBag)
         
     }
