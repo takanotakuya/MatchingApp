@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B0842BED2674AA5D0032F477 /* BottomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0842BEC2674AA5D0032F477 /* BottomControlView.swift */; };
 		B0842BEF2674B8110032F477 /* UIImage-Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0842BEE2674B8110032F477 /* UIImage-Extention.swift */; };
+		B0842BF2267586CA0032F477 /* TopControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0842BF1267586CA0032F477 /* TopControlView.swift */; };
 		B0FFA31E26735FCB000ECEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA31D26735FCB000ECEDD /* AppDelegate.swift */; };
 		B0FFA32026735FCB000ECEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA31F26735FCB000ECEDD /* SceneDelegate.swift */; };
 		B0FFA32226735FCB000ECEDD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA32126735FCB000ECEDD /* HomeViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		B0842BEC2674AA5D0032F477 /* BottomControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomControlView.swift; sourceTree = "<group>"; };
 		B0842BEE2674B8110032F477 /* UIImage-Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage-Extention.swift"; sourceTree = "<group>"; };
+		B0842BF1267586CA0032F477 /* TopControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopControlView.swift; sourceTree = "<group>"; };
 		B0FFA31A26735FCB000ECEDD /* MatchingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FFA31D26735FCB000ECEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FFA31F26735FCB000ECEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				B0842BEC2674AA5D0032F477 /* BottomControlView.swift */,
+				B0842BF1267586CA0032F477 /* TopControlView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0842BF2267586CA0032F477 /* TopControlView.swift in Sources */,
 				B0FFA32226735FCB000ECEDD /* HomeViewController.swift in Sources */,
 				B0FFA31E26735FCB000ECEDD /* AppDelegate.swift in Sources */,
 				B0842BEF2674B8110032F477 /* UIImage-Extention.swift in Sources */,
