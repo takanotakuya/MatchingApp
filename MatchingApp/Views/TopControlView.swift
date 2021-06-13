@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxCocoa
 
 class TopControlView: UIView {
     
@@ -25,10 +26,15 @@ class TopControlView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupLayout()
+        setupBindings()
+    }
+    
+    private func setupLayout() {
         let baseStackView = UIStackView(arrangedSubviews: [tinderButton, goodButton, commentButton, profileButton])
         baseStackView.axis = .horizontal
         baseStackView.distribution = .fillEqually
-        baseStackView.spacing = 40
+        baseStackView.spacing = 43
         baseStackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(baseStackView)
@@ -38,6 +44,12 @@ class TopControlView: UIView {
          baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 40),
          baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -40),
         ].forEach { $0.isActive = true }
+    }
+    
+    private func setupBindings() {
+        
+        
+        
     }
     
     required init?(coder: NSCoder) {
