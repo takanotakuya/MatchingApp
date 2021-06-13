@@ -61,6 +61,28 @@ class CardView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupLayout()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panCardView))
+        self.addGestureRecognizer(panGesture)
+    }
+    
+    @objc private func panCardView(gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: self)
+        
+        if gesture.state == .changed {
+            self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+            
+        } else if gesture.state == .ended {
+            UIView.animate(withDuration: 0.3) {
+                self.transform = .identity
+                self.layoutIfNeeded()
+            }
+        }
+
+    }
+    
+    private func setupLayout() {
         let infoVerticalStackView = UIStackView(arrangedSubviews: [residenceLabel, hobbyLabel, introductionLabel])
         infoVerticalStackView.axis = .vertical
         
@@ -75,7 +97,6 @@ class CardView: UIView {
         infoButton.anchor(width: 30)
         baseStackView.anchor(bottom: cardImageView.bottomAnchor, left: cardImageView.leftAnchor, right: cardImageView.rightAnchor, bottomPadding: 20, leftPadding: 20, rightPadding: 20)
         nameLabel.anchor(bottom: baseStackView.topAnchor, left: cardImageView.leftAnchor, bottomPadding: 10, leftPadding: 20)
-        
     }
     
     required init?(coder: NSCoder) {
