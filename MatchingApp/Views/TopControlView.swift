@@ -7,17 +7,21 @@
 
 import UIKit
 import RxCocoa
+import RxSwift
 
 class TopControlView: UIView {
     
-    let tinderButton = createTopButton(imageName: "火の玉のアイコン素材")
-    let goodButton = createTopButton(imageName: "ダイヤのマーク3")
-    let commentButton = createTopButton(imageName: "吹き出しのアイコン3")
-    let profileButton = createTopButton(imageName: "人物アイコン")
+    private let disposeBag = DisposeBag()
     
-    static private func createTopButton(imageName: String) -> UIButton {
+    let tinderButton = createTopButton(imageName: "火の玉のアイコン素材", unselectedImage: "火の玉のアイコン素材 (1)")
+    let goodButton = createTopButton(imageName: "ダイヤのマーク3", unselectedImage: "ダイヤのマーク3 (1)")
+    let commentButton = createTopButton(imageName: "吹き出しのアイコン3", unselectedImage: "吹き出しのアイコン3 (1)")
+    let profileButton = createTopButton(imageName: "人物アイコン", unselectedImage: "人物アイコン (1)")
+    
+    static private func createTopButton(imageName: String, unselectedImage: String ) -> UIButton {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: imageName), for: .normal)
+        button.setImage(UIImage(named: imageName), for: .selected)
+        button.setImage(UIImage(named: unselectedImage), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         return button
         
@@ -48,7 +52,29 @@ class TopControlView: UIView {
     
     private func setupBindings() {
         
+        tinderButton.rx.tap
+            .subscribe { _ in
+                print(#function)
+            }
+            .disposed(by: disposeBag)
         
+        goodButton.rx.tap
+            .subscribe { _ in
+                print(#function)
+            }
+            .disposed(by: disposeBag)
+        
+        commentButton.rx.tap
+            .subscribe { _ in
+                print(#function)
+            }
+            .disposed(by: disposeBag)
+        
+        profileButton.rx.tap
+            .subscribe { _ in
+                print(#function)
+            }
+            .disposed(by: disposeBag)
         
     }
     
