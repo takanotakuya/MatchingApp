@@ -9,7 +9,10 @@ import UIKit
 
 class TopControlView: UIView {
     
-    let button = createTopButton()
+    let tinderButton = createTopButton()
+    let goodButton = createTopButton()
+    let commentButton = createTopButton()
+    let profileButton = createTopButton()
     
     static private func createTopButton() -> UIButton {
         let button = UIButton(type: .system)
@@ -23,7 +26,7 @@ class TopControlView: UIView {
         
         backgroundColor = .purple
         
-        let baseStackView = UIStackView(arrangedSubviews: [button])
+        let baseStackView = UIStackView(arrangedSubviews: [tinderButton, goodButton, commentButton, profileButton])
         baseStackView.axis = .horizontal
         baseStackView.distribution = .fillEqually
         baseStackView.spacing = 10
