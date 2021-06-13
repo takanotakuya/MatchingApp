@@ -9,14 +9,15 @@ import UIKit
 
 class TopControlView: UIView {
     
-    let tinderButton = createTopButton()
-    let goodButton = createTopButton()
-    let commentButton = createTopButton()
-    let profileButton = createTopButton()
+    let tinderButton = createTopButton(imageName: "火の玉のアイコン素材")
+    let goodButton = createTopButton(imageName: "ダイヤのマーク3")
+    let commentButton = createTopButton(imageName: "吹き出しのアイコン3")
+    let profileButton = createTopButton(imageName: "人物アイコン")
     
-    static private func createTopButton() -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle("tap", for: .normal)
+    static private func createTopButton(imageName: String) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named: imageName), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         return button
         
     }
@@ -24,20 +25,18 @@ class TopControlView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .purple
-        
         let baseStackView = UIStackView(arrangedSubviews: [tinderButton, goodButton, commentButton, profileButton])
         baseStackView.axis = .horizontal
         baseStackView.distribution = .fillEqually
-        baseStackView.spacing = 10
+        baseStackView.spacing = 40
         baseStackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(baseStackView)
         
         [baseStackView.topAnchor.constraint(equalTo: topAnchor),
          baseStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-         baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-         baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+         baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 40),
+         baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -40),
         ].forEach { $0.isActive = true }
     }
     
