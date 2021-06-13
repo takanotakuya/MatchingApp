@@ -9,12 +9,14 @@ import UIKit
 
 class TopControlView: UIView {
     
-    let button: UIButton = {
+    let button = createTopButton()
+    
+    static private func createTopButton() -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle("tap", for: .normal)
         return button
         
-    }()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
