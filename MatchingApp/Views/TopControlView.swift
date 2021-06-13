@@ -43,11 +43,7 @@ class TopControlView: UIView {
         
         addSubview(baseStackView)
         
-        [baseStackView.topAnchor.constraint(equalTo: topAnchor),
-         baseStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-         baseStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 40),
-         baseStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -40),
-        ].forEach { $0.isActive = true }
+        baseStackView.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, leftPadding: 40, rightPadding: 40)
         
         tinderButton.isSelected = true
     

@@ -30,23 +30,23 @@ extension UIView {
         }
         
         if let bottom = bottom {
-            self.bottomAnchor.constraint(equalTo: bottom, constant: topPadding).isActive = true
+            self.bottomAnchor.constraint(equalTo: bottom, constant: -bottomPadding).isActive = true
         }
         
         if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: topPadding).isActive = true
+            self.leftAnchor.constraint(equalTo: left, constant: leftPadding).isActive = true
         }
         
         if let right = right {
-            self.rightAnchor.constraint(equalTo: right, constant: topPadding).isActive = true
+            self.rightAnchor.constraint(equalTo: right, constant: -rightPadding).isActive = true
         }
         
         if let centerY = centerY {
-            self.centerYAnchor.constraint(equalTo: centerY, constant: topPadding).isActive = true
+            self.centerYAnchor.constraint(equalTo: centerY).isActive = true
         }
         
         if let centerX = centerX {
-            self.centerXAnchor.constraint(equalTo: centerX, constant: topPadding).isActive = true
+            self.centerXAnchor.constraint(equalTo: centerX).isActive = true
         }
         
         if let width = width {
