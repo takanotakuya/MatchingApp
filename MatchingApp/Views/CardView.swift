@@ -9,6 +9,9 @@ import UIKit
 
 class CardView: UIView {
     
+    private let gradientLayer = CAGradientLayer()
+    
+    // MARK: UIViews
     private let cardImageView = CardImageView(frame: .zero)
     private let infoButton = UIButton(type: .system).createCardInfoButton()
     private let nameLabel = CardinfoLabel(frame: .zero, labelText: "Taro, 22", labelFont: .systemFont(ofSize: 40, weight: .heavy))
@@ -22,9 +25,20 @@ class CardView: UIView {
         super.init(frame: frame)
         
         setupLayout()
+        setupGradietntLayer()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panCardView))
         self.addGestureRecognizer(panGesture)
+    }
+    
+    private func setupGradietntLayer() {
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.3, 1.1]
+        cardImageView.layer.addSublayer(gradientLayer)
+    }
+    
+    override func layoutSubviews() {
+        gradientLayer.frame = self.bounds
     }
     
     @objc private func panCardView(gesture: UIPanGestureRecognizer) {
