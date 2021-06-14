@@ -13,7 +13,9 @@ class CardView: UIView {
         let iv = UIImageView()
         iv.backgroundColor = .blue
         iv.layer.cornerRadius = 10
-        iv.contentMode = .scaleToFill
+        iv.contentMode = .scaleAspectFill
+        iv.image = UIImage(named: "camp5")
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -69,6 +71,7 @@ class CardView: UIView {
         label.layer.cornerRadius = 10
         
         label.textAlignment = .center
+        label.alpha = 0
         return label
     }()
     
@@ -83,6 +86,7 @@ class CardView: UIView {
         label.layer.cornerRadius = 10
         
         label.textAlignment = .center
+        label.alpha = 0
         return label
     }()
     
@@ -113,12 +117,24 @@ class CardView: UIView {
         
         let rotateTranslation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotateTranslation.translatedBy(x: translation.x, y: translation.y)
+        
+        let ratio: CGFloat = 1 / 100
+        let ratioValue = ratio * translation.x
+        
+        if translation.x > 0 {
+            self.goodLabel.alpha = ratioValue
+        } else if translation.x < 0 {
+            self.nopeLabel.alpha = -ratioValue
+        }
+        
     }
     
     private func handlePanEnded() {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.7, options: []) {
             self.transform = .identity
             self.layoutIfNeeded()
+            self.goodLabel.alpha = 0
+            self.nopeLabel.alpha = 0
         }
     }
     
