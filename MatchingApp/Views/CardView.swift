@@ -83,10 +83,11 @@ class CardView: UIView {
     }
     
     private func handlePanChenge(translation: CGPoint) {
+        let degree: CGFloat = translation.x / 20
+        let angle = degree * CGFloat.pi / 100
         
-        
-        self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
-        
+        let rotateTranslation = CGAffineTransform(rotationAngle: angle)
+        self.transform = rotateTranslation.translatedBy(x: translation.x, y: translation.y)
     }
     
     private func setupLayout() {
