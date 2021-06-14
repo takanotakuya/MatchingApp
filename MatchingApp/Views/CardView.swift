@@ -75,10 +75,7 @@ class CardView: UIView {
             self.handlePanChenge(translation: translation)
             
         } else if gesture.state == .ended {
-            UIView.animate(withDuration: 0.3) {
-                self.transform = .identity
-                self.layoutIfNeeded()
-            }
+            self.handlePanEnded()
         }
     }
     
@@ -88,6 +85,13 @@ class CardView: UIView {
         
         let rotateTranslation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotateTranslation.translatedBy(x: translation.x, y: translation.y)
+    }
+    
+    private func handlePanEnded() {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.7, options: []) {
+            self.transform = .identity
+            self.layoutIfNeeded()
+        }
     }
     
     private func setupLayout() {
