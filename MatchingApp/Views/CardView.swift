@@ -58,6 +58,20 @@ class CardView: UIView {
         return label
     }()
     
+    let goodLabel: UILabel = {
+        let label = UILabel()
+        label.font = .boldSystemFont(ofSize: 45)
+        label.text = "GOOD"
+        label.textColor = .rgb(red: 137, green: 223, blue: 86)
+        
+        label.layer.borderWidth = 3
+        label.layer.borderColor = UIColor.rgb(red: 137, green: 223, blue: 86).cgColor
+        label.layer.cornerRadius = 10
+        
+        label.textAlignment = .center
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -104,11 +118,13 @@ class CardView: UIView {
         addSubview(cardImageView)
         addSubview(nameLabel)
         addSubview(baseStackView)
+        addSubview(goodLabel)
         
         cardImageView.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, leftPadding: 10, rightPadding: 10)
         infoButton.anchor(width: 30)
         baseStackView.anchor(bottom: cardImageView.bottomAnchor, left: cardImageView.leftAnchor, right: cardImageView.rightAnchor, bottomPadding: 20, leftPadding: 20, rightPadding: 20)
         nameLabel.anchor(bottom: baseStackView.topAnchor, left: cardImageView.leftAnchor, bottomPadding: 10, leftPadding: 20)
+        goodLabel.anchor(top: cardImageView.topAnchor, left: cardImageView.leftAnchor, width: 140, height: 55, topPadding: 25, leftPadding: 20)
     }
     
     required init?(coder: NSCoder) {
