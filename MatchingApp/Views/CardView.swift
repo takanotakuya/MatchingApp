@@ -71,7 +71,8 @@ class CardView: UIView {
         let translation = gesture.translation(in: self)
         
         if gesture.state == .changed {
-            self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+            
+            self.handlePanChenge(translation: translation)
             
         } else if gesture.state == .ended {
             UIView.animate(withDuration: 0.3) {
@@ -79,7 +80,13 @@ class CardView: UIView {
                 self.layoutIfNeeded()
             }
         }
-
+    }
+    
+    private func handlePanChenge(translation: CGPoint) {
+        
+        
+        self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+        
     }
     
     private func setupLayout() {
