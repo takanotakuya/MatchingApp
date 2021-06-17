@@ -14,12 +14,12 @@ class CardView: UIView {
     // MARK: UIViews
     private let cardImageView = CardImageView(frame: .zero)
     private let infoButton = UIButton(type: .system).createCardInfoButton()
-    private let nameLabel = CardinfoLabel(frame: .zero, labelText: "Taro, 22", labelFont: .systemFont(ofSize: 40, weight: .heavy))
-        private let residenceLabel = CardinfoLabel(frame: .zero, labelText: "日本、大阪", labelFont: .systemFont(ofSize: 20, weight: .regular))
-    private let hobbyLabel = CardinfoLabel(frame: .zero, labelText: "ランニング", labelFont: .systemFont(ofSize: 25, weight: .regular))
-    private let introductionLabel = CardinfoLabel(frame: .zero, labelText: "走り回るのが大好きです", labelFont: .systemFont(ofSize: 25, weight: .regular))
-    private let goodLabel = CardinfoLabel(frame: .zero, labaeText: "GOOD", labelColor: .rgb(red: 137, green: 223, blue: 86))
-    private let nopeLabel = CardinfoLabel(frame: .zero, labaeText: "NOPE", labelColor: .rgb(red: 222, green: 110, blue: 110))
+    private let nameLabel = CardinfoLabel(labelText: "Taro, 22", labelFont: .systemFont(ofSize: 40, weight: .heavy))
+        private let residenceLabel = CardinfoLabel(labelText: "日本、大阪", labelFont: .systemFont(ofSize: 20, weight: .regular))
+    private let hobbyLabel = CardinfoLabel(labelText: "ランニング", labelFont: .systemFont(ofSize: 25, weight: .regular))
+    private let introductionLabel = CardinfoLabel(labelText: "走り回るのが大好きです", labelFont: .systemFont(ofSize: 25, weight: .regular))
+    private let goodLabel = CardinfoLabel(labaeText: "GOOD", labelColor: .rgb(red: 137, green: 223, blue: 86))
+    private let nopeLabel = CardinfoLabel(labaeText: "NOPE", labelColor: .rgb(red: 222, green: 110, blue: 110))
     
     override init(frame: CGRect) {
         super.init(frame: frame)

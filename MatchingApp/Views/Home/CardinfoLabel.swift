@@ -10,15 +10,15 @@ import UIKit
 class CardinfoLabel: UILabel {
     
     // nopeとgoodのラベル
-    init(frame: CGRect, labaeText: String, labelColor: UIColor) {
-        super.init(frame: frame)
+    init(text: String, textColor: UIColor) {
+        super.init(frame: .zero)
         
         font = .boldSystemFont(ofSize: 45)
-        text = labaeText
-        textColor = labelColor
+        self.text = text
+        self.textColor = textColor
         
         layer.borderWidth = 3
-        layer.borderColor = labelColor.cgColor
+        layer.borderColor = textColor.cgColor
         layer.cornerRadius = 10
         
         textAlignment = .center
@@ -26,12 +26,12 @@ class CardinfoLabel: UILabel {
     }
     
     // その他のtextColorが白のラベル
-    init(frame: CGRect, labelText: String, labelFont: UIFont) {
-        super.init(frame: frame)
+    init(text: String, font: UIFont) {
+        super.init(frame: .zero)
         
-        font = labelFont
+        self.font = font
         textColor = .white
-        text = labelText
+        self.text = text
     }
     
     required init?(coder: NSCoder) {
