@@ -13,17 +13,7 @@ class RegisterViewController: UIViewController {
     private let nameTextField = RegisterTextField(plachHolder: "名前")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
-    
-    let registerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("登録", for: .normal)
-        button.backgroundColor = .red
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 10
-        return button
-        
-    }()
-    
+    private let registerButton = RegisterButton()    
     
     override func viewDidLoad() {
         super.viewDidLoad()
