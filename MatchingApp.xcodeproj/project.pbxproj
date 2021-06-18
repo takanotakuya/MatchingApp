@@ -26,6 +26,7 @@
 		B0CA0F2A26758E1300757DE8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = B0CA0F2926758E1300757DE8 /* RxRelay */; };
 		B0CA0F2C2675AE1000757DE8 /* UIView-Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA0F2B2675AE1000757DE8 /* UIView-Extention.swift */; };
 		B0CA0F2E2675D91000757DE8 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CA0F2D2675D91000757DE8 /* CardView.swift */; };
+		B0E6E732267C3E470038DA16 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E6E731267C3E470038DA16 /* RegisterViewModel.swift */; };
 		B0FFA31E26735FCB000ECEDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA31D26735FCB000ECEDD /* AppDelegate.swift */; };
 		B0FFA32026735FCB000ECEDD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA31F26735FCB000ECEDD /* SceneDelegate.swift */; };
 		B0FFA32226735FCB000ECEDD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FFA32126735FCB000ECEDD /* HomeViewController.swift */; };
@@ -73,6 +74,7 @@
 		B09246A5267AE29B00C8321C /* RegisterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterButton.swift; sourceTree = "<group>"; };
 		B0CA0F2B2675AE1000757DE8 /* UIView-Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView-Extention.swift"; sourceTree = "<group>"; };
 		B0CA0F2D2675D91000757DE8 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		B0E6E731267C3E470038DA16 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B0FFA31A26735FCB000ECEDD /* MatchingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MatchingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0FFA31D26735FCB000ECEDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0FFA31F26735FCB000ECEDD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,14 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		B0E6E730267C3DE10038DA16 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B0E6E731267C3E470038DA16 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B0FFA31126735FCA000ECEDD = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +234,7 @@
 			children = (
 				B0842BF02674B81C0032F477 /* Extentions */,
 				B0842BEB2674AA290032F477 /* Views */,
+				B0E6E730267C3DE10038DA16 /* ViewModel */,
 				B0842BEA2674A9E10032F477 /* ViewControllers */,
 				B0FFA31D26735FCB000ECEDD /* AppDelegate.swift */,
 				B0FFA31F26735FCB000ECEDD /* SceneDelegate.swift */,
@@ -508,6 +519,7 @@
 				B0FFA31E26735FCB000ECEDD /* AppDelegate.swift in Sources */,
 				B08213D626771C840079F96D /* CardinfoLabel.swift in Sources */,
 				B08213D42676DDCC0079F96D /* UIColor-Extention.swift in Sources */,
+				B0E6E732267C3E470038DA16 /* RegisterViewModel.swift in Sources */,
 				B0842BEF2674B8110032F477 /* UIImage-Extention.swift in Sources */,
 				B0FFA32026735FCB000ECEDD /* SceneDelegate.swift in Sources */,
 				B0CA0F2E2675D91000757DE8 /* CardView.swift in Sources */,
