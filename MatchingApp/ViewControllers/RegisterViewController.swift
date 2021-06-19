@@ -60,6 +60,8 @@ class RegisterViewController: UIViewController {
     }
     
     private func setupBindings() {
+        
+        // textFieldのBinding
         nameTextField.rx.text
             .asDriver()
             .drive { [weak self] text in
@@ -92,6 +94,14 @@ class RegisterViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // viewModelのBinding
+        viewModel.validRegisterDriver
+            .drive { validAll in
+                self.registerButton.isEnabled = validAll
+                self.registerButton.backgroundColor = validAll ? .rgb(red: 227, green: 48, blue: 78) : .init(white: 0.7, alpha: 1)
+            }
+            .disposed(by: disposeBag)
+
     }
     
     private func createUserToFireAuth() {
