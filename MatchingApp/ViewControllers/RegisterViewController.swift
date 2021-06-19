@@ -111,6 +111,7 @@ class RegisterViewController: UIViewController {
         Auth.createUserToFireAuth(email: email, password: password, name: name) { success in
             if success {
                 print("処理が完了")
+                self.dismiss(animated: true)
             } else {
                 
             }
