@@ -90,7 +90,7 @@ class RegisterViewController: UIViewController {
             .asDriver()
             .drive { [weak self] _ in
                 // 登録時の処理
-                self?.createUserToFireAuth()
+                self?.createUser()
             }
             .disposed(by: disposeBag)
         
@@ -101,42 +101,21 @@ class RegisterViewController: UIViewController {
                 self.registerButton.backgroundColor = validAll ? .rgb(red: 227, green: 48, blue: 78) : .init(white: 0.7, alpha: 1)
             }
             .disposed(by: disposeBag)
-
     }
     
-    private func createUserToFireAuth() {
-        guard let email = emailTextField.text else { return }
-        guard let password = passwordTextField.text else { return }
+    private func createUser() {
+        let email = emailTextField.text
+        let password = passwordTextField.text
+        let name = nameTextField.text
         
-        Auth.auth().createUser(withEmail: email, password: password) { (auth, err) in
-            if let err = err {
-                print("auth情報の保存に失敗: ", err)
-                return
+        Auth.createUserToFireAuth(email: email, password: password, name: name) { success in
+            if success {
+                print("処理が完了")
+            } else {
+                
             }
-            
-            guard let uid = auth?.user.uid else { return }
-            self.setUserDataToFirestore(email: email, uid: uid)
         }
-    }
-    
-    private func setUserDataToFirestore(email: String, uid: String) {
-        guard let name = nameTextField.text else { return }
         
-        let document = [
-            "name": name,
-            "email": email,
-            "createdAt": Timestamp()
-        ] as [String : Any]
-        
-        Firestore.firestore().collection("users").document(uid).setData(document) { err in
-            
-            if let err = err {
-                print("ユーザー情報のfirestoreへ保存に失敗: ", err)
-                return
-            }
-            
-            print("ユーザー情報のfirestoreへ保存が成功")
-        }
     }
     
 }
