@@ -16,12 +16,12 @@ class RegisterViewController: UIViewController {
     private let viewModel = RegisterViewModel()
     
     //MARK: UIViews
-    private let titleLabel = RegisterTitleLabel()
+    private let titleLabel = RegisterTitleLabel(text: "Tinder")
     private let nameTextField = RegisterTextField(plachHolder: "名前")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
     private let registerButton = RegisterButton()
-    private let alreadyHaveAccountButton = UIButton(type: .system).createAboutAccountButton()
+    private let alreadyHaveAccountButton = UIButton(type: .system).createAboutAccountButton(text: "既にアカウントをお持ちの場合はこちら")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,6 @@ class RegisterViewController: UIViewController {
     
     private func setupLayout() {
         passwordTextField.isSecureTextEntry = true
-        view.backgroundColor = .yellow
         
         let baseStackView = UIStackView(arrangedSubviews: [nameTextField, emailTextField, passwordTextField, registerButton])
         baseStackView.axis = .vertical
