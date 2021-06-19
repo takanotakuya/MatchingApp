@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 class RegisterViewModel {
     
@@ -16,6 +17,7 @@ class RegisterViewModel {
     var nameTextOutput = PublishSubject<String>()
     var emailTextOutput = PublishSubject<String>()
     var passwordTextOutput = PublishSubject<String>()
+    var validRegisterSubject = BehaviorSubject<Bool>(value: false)
     
     // MARK: observer
     var nameTextInput: AnyObserver<String> {
@@ -30,29 +32,37 @@ class RegisterViewModel {
         passwordTextOutput.asObserver()
     }
     
+    var validRegisterDriver: Driver<Bool> = Driver.never()
+    
     init() {
         
-        nameTextOutput
+        validRegisterDriver = validRegisterSubject
+            .asDriver(onErrorDriveWith: Driver.empty())
+        
+        let nameValid = nameTextOutput
             .asObservable()
-            .subscribe { text in
-                print("name: ", text)
+            .map { text -> Bool in
+                return text.count >= 5
+            }
+        
+        let emailValid = emailTextOutput
+            .asObservable()
+            .map { text -> Bool in
+                return text.count >= 5
+            }
+        
+        let passwordValid = passwordTextOutput
+            .asObservable()
+            .map { text -> Bool in
+                return text.count >= 5
+            }
+        
+        Observable.combineLatest(nameValid, emailValid, passwordValid) { $0 && $1 && $2 }
+            .subscribe { validAll in
+                self.validRegisterSubject.onNext(validAll)
             }
             .disposed(by: disposeBag)
-        
-        emailTextOutput
-            .asObservable()
-            .subscribe { text in
-                print("email: ", text)
-            }
-            .disposed(by: disposeBag)
-        
-        passwordTextOutput
-            .asObservable()
-            .subscribe { text in
-                print("password: ", text)
-            }
-            .disposed(by: disposeBag)
-        
+
     }
     
 }
