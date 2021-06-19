@@ -8,10 +8,13 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import PKHUD
 
 class HomeViewController: UIViewController {
     
     private var user: User?
+    // 自分以外のユーザー情報
+    private var users = [User]()
     
     let logoutButton: UIButton = {
         let button = UIButton(type: .system)
@@ -35,9 +38,9 @@ class HomeViewController: UIViewController {
                 self.user = user
                 
             }
-            
         }
         
+        fetchUsers()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +56,17 @@ class HomeViewController: UIViewController {
     }
     
     // MARK: Methods
+    private func fetchUsers() {
+        HUD.show(.progress)
+        Firestore.fetchUsersFromFiresotre { (users) in
+            HUD.hide()
+            self.users = users
+            
+            print("ユーザー情報の取得に成功")
+        }
+    
+    }
+    
     private func setupLayout() {
         view.backgroundColor = .white
         
