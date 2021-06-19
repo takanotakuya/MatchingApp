@@ -16,6 +16,10 @@ class HomeViewController: UIViewController {
     // 自分以外のユーザー情報
     private var users = [User]()
     
+    let topControlView = TopControlView()
+    let cardView = UIView()
+    let bottomControlView = BottomControlView()
+    
     let logoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ログアウト", for: .normal)
@@ -62,6 +66,11 @@ class HomeViewController: UIViewController {
             HUD.hide()
             self.users = users
             
+            self.users.forEach { (user) in
+                let card = CardView(user: user)
+                self.cardView.addSubview(card)
+                card.anchor(top: self.cardView.topAnchor, bottom: self.cardView.bottomAnchor, left: self.cardView.leftAnchor,right: self.cardView.rightAnchor)
+            }
             print("ユーザー情報の取得に成功")
         }
     
@@ -69,10 +78,6 @@ class HomeViewController: UIViewController {
     
     private func setupLayout() {
         view.backgroundColor = .white
-        
-        let topControlView = TopControlView()
-        let cardView = CardView()
-        let bottomControlView = BottomControlView()
         
         let stackView = UIStackView(arrangedSubviews: [topControlView, cardView, bottomControlView])
         stackView.translatesAutoresizingMaskIntoConstraints = false

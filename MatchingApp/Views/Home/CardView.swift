@@ -21,12 +21,11 @@ class CardView: UIView {
     private let goodLabel = CardinfoLabel(text: "GOOD", textColor: .rgb(red: 137, green: 223, blue: 86))
     private let nopeLabel = CardinfoLabel(text: "NOPE", textColor: .rgb(red: 222, green: 110, blue: 110))
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(user: User) {
+        super.init(frame: .zero)
         
-        setupLayout()
+        setupLayout(user: user)
         setupGradietntLayer()
-        
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panCardView))
         self.addGestureRecognizer(panGesture)
     }
@@ -80,13 +79,14 @@ class CardView: UIView {
         }
     }
     
-    private func setupLayout() {
+    private func setupLayout(user: User) {
         let infoVerticalStackView = UIStackView(arrangedSubviews: [residenceLabel, hobbyLabel, introductionLabel])
         infoVerticalStackView.axis = .vertical
         
         let baseStackView = UIStackView(arrangedSubviews: [infoVerticalStackView, infoButton])
         baseStackView.axis = .horizontal
         
+        // Viewの配置を作成
         addSubview(cardImageView)
         addSubview(nameLabel)
         addSubview(baseStackView)
@@ -99,6 +99,12 @@ class CardView: UIView {
         nameLabel.anchor(bottom: baseStackView.topAnchor, left: cardImageView.leftAnchor, bottomPadding: 10, leftPadding: 20)
         goodLabel.anchor(top: cardImageView.topAnchor, left: cardImageView.leftAnchor, width: 140, height: 55, topPadding: 25, leftPadding: 20)
         nopeLabel.anchor(top: cardImageView.topAnchor, right: cardImageView.rightAnchor, width: 140, height: 55, topPadding: 25, rightPadding: 20)
+        
+        // ユーザー情報をViewに反映
+        nameLabel.text = user.name
+        introductionLabel.text = user.email
+        
+        
     }
     
     required init?(coder: NSCoder) {
