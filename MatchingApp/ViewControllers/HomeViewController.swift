@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class HomeViewController: UIViewController {
     
@@ -16,10 +17,20 @@ class HomeViewController: UIViewController {
         return button
     }()
 
+    // MARK: Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+//        fetchUserFromFirestore(uid: uid)
+        Firestore.fetchUserFromFirestore(uid: uid)
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -34,6 +45,7 @@ class HomeViewController: UIViewController {
         
     }
     
+    // MARK: Methods
     private func setupLayout() {
         view.backgroundColor = .white
         
