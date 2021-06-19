@@ -28,6 +28,19 @@ extension Auth {
             }
         }
     }
+    
+    static func loginWithFireAuth(email: String, password: String, completion: @escaping (Bool) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (res, err) in
+            if let err = err {
+                print("ログインに失敗: ", err)
+                completion(false)
+                return
+            }
+            
+            print("ログインに成功")
+            completion(true)
+        }
+    }
 
 }
 
