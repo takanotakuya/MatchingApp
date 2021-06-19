@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -16,7 +17,7 @@ class LoginViewController: UIViewController {
     private let titleLabel = RegisterTitleLabel(text: "Login")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
-    private let registerButton = RegisterButton(text: "ログイン")
+    private let loginButton = RegisterButton(text: "ログイン")
     private let dontHaveAccountButton = UIButton(type: .system).createAboutAccountButton(text: "アカウントをお持ちでない方はこちら")
     
     override func viewDidLoad() {
@@ -41,7 +42,7 @@ class LoginViewController: UIViewController {
     private func setupLayout() {
         passwordTextField.isSecureTextEntry = true
         
-        let baseStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, registerButton])
+        let baseStackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         baseStackView.axis = .vertical
         baseStackView.distribution = .fillEqually
         baseStackView.spacing = 20
@@ -64,6 +65,29 @@ class LoginViewController: UIViewController {
                 self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: disposeBag)
+        
+        loginButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.loginWithFireAuth()
+            }
+            .disposed(by: disposeBag)
+        
+    }
+    
+    private func loginWithFireAuth() {
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (res, err) in
+            if let err = err {
+                print("ログインに失敗: ", err)
+                return
+            }
+            
+            print("ログインに成功")
+            self.dismiss(animated: true, completion: nil)
+        }
         
     }
     
