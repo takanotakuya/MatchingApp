@@ -6,21 +6,25 @@
 //
 
 import UIKit
+import RxSwift
 
 class LoginViewController: UIViewController {
+    
+    private let disposeBag = DisposeBag()
     
     //MARK: UIViews
     private let titleLabel = RegisterTitleLabel(text: "Login")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
-    private let registerButton = RegisterButton()
-    private let alreadyHaveAccountButton = UIButton(type: .system).createAboutAccountButton(text: "アカウントをお持ちでない方はこちら")
+    private let registerButton = RegisterButton(text: "ログイン")
+    private let dontHaveAccountButton = UIButton(type: .system).createAboutAccountButton(text: "アカウントをお持ちでない方はこちら")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupGradientLayer()
         setupLayout()
+        setupBindings()
     }
     
     private func setupGradientLayer() {
@@ -44,12 +48,23 @@ class LoginViewController: UIViewController {
         
         view.addSubview(baseStackView)
         view.addSubview(titleLabel)
-        view.addSubview(alreadyHaveAccountButton)
+        view.addSubview(dontHaveAccountButton)
         
         emailTextField.anchor(height: 45)
         baseStackView.anchor(left: view.leftAnchor, right: view.rightAnchor, centerY: view.centerYAnchor, leftPadding: 40, rightPadding: 40)
         titleLabel.anchor(bottom: baseStackView.topAnchor, centerX: view.centerXAnchor, bottomPadding: 20)
-        alreadyHaveAccountButton.anchor(top: baseStackView.bottomAnchor, centerX: view.centerXAnchor, topPadding: 20)
+        dontHaveAccountButton.anchor(top: baseStackView.bottomAnchor, centerX: view.centerXAnchor, topPadding: 20)
+    }
+    
+    private func setupBindings() {
+        
+        dontHaveAccountButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            }
+            .disposed(by: disposeBag)
+        
     }
     
 }

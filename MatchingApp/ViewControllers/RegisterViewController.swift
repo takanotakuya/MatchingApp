@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController {
     private let nameTextField = RegisterTextField(plachHolder: "名前")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
-    private let registerButton = RegisterButton()
+    private let registerButton = RegisterButton(text: "登録")
     private let alreadyHaveAccountButton = UIButton(type: .system).createAboutAccountButton(text: "既にアカウントをお持ちの場合はこちら")
     
     override func viewDidLoad() {
