@@ -20,7 +20,8 @@ class RegisterViewController: UIViewController {
     private let nameTextField = RegisterTextField(plachHolder: "名前")
     private let emailTextField = RegisterTextField(plachHolder: "email")
     private let passwordTextField = RegisterTextField(plachHolder: "password")
-    private let registerButton = RegisterButton()    
+    private let registerButton = RegisterButton()
+    private let alreadyHaveAccountButton = UIButton(type: .system).createAboutAccountButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,12 @@ class RegisterViewController: UIViewController {
         setupGradientLayer()
         setupLayout()
         setupBindings()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
     }
     
     //MARK: Methods
@@ -53,10 +60,12 @@ class RegisterViewController: UIViewController {
         
         view.addSubview(baseStackView)
         view.addSubview(titleLabel)
+        view.addSubview(alreadyHaveAccountButton)
         
         nameTextField.anchor(height: 45)
         baseStackView.anchor(left: view.leftAnchor, right: view.rightAnchor, centerY: view.centerYAnchor, leftPadding: 40, rightPadding: 40)
         titleLabel.anchor(bottom: baseStackView.topAnchor, centerX: view.centerXAnchor, bottomPadding: 20)
+        alreadyHaveAccountButton.anchor(top: baseStackView.bottomAnchor, centerX: view.centerXAnchor, topPadding: 20)
     }
     
     private func setupBindings() {
@@ -86,11 +95,20 @@ class RegisterViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
+        // Buttonのbinding
         registerButton.rx.tap
             .asDriver()
             .drive { [weak self] _ in
                 // 登録時の処理
                 self?.createUser()
+            }
+            .disposed(by: disposeBag)
+        
+        alreadyHaveAccountButton.rx.tap
+            .asDriver()
+            .drive { [weak self] _ in
+                let login = LoginViewController()
+                self?.navigationController?.pushViewController(login, animated: true)
             }
             .disposed(by: disposeBag)
         
